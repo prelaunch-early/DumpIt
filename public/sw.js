@@ -1,1 +1,4 @@
-const CACHE='evanos-v3-gemini';const files=['./','./index.html','./style.css','./onboarding.css','./onboarding.js','./planner-core.js','./dashboard.html','./app.js','./engine.js','./icon.svg','./manifest.json'];self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(files)));self.skipWaiting()});self.addEventListener('activate',e=>e.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))])));self.addEventListener('fetch',e=>{const url=new URL(e.request.url);if(url.pathname.startsWith('/api/'))return;if(e.request.method==='GET'&&url.origin===location.origin)e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)))});
+worker.js
+wrangler.jsonc
+package.json
+public/
